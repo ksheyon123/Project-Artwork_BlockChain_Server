@@ -1,0 +1,59 @@
+---
+name: picasso_project
+version: 1.0.0
+client:
+    organization: Artist
+    connection:
+        timeout:
+            peer:
+                endorser: '300'
+            orderer: '300'
+channels:
+    mychannel:
+        orderers:
+        - orderer.example.com
+        peers:
+            peer0.org1.artist.com: {},
+            # peer0.org2.company.com: {},
+            # peer0.org3.client.com: {},
+
+
+organizations:
+    Artist:
+        mspid: ArtistMSP
+        peers:
+        - peer0.org1.artist.com
+        certificateAuthorities:
+        - ca.example.com
+
+    Company:
+        mspid: CompanyMSP
+        peers:
+        - peer0.org2.company.com
+        certificateAuthorities:
+        - ca.example.com
+
+    Client:
+        mspid: ClientMSP
+        peers:
+        - peer0.org3.client.com
+        certificateAuthorities:
+        - ca.example.com
+
+    
+orderers:
+    orderer.example.com:
+        url: grpc://localhost:7050
+peers:
+    peer0.org1.artist.com:
+        url: grpc://localhost:7051
+    peer0.org2.company.com:
+        url: grpc://localhost:7051    
+    peer0.org3.client.com:
+        url: grpc://localhost:7051 
+
+
+certificateAuthorities:
+    ca.example.com:
+        url: http://localhost:7054
+        caName: ca.example.com
